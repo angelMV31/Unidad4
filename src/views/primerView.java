@@ -97,34 +97,35 @@ public class primerView extends JFrame{
 		login.setBackground(Color.black);
 		login.setVisible(true);
 		login.setLayout(null);
+		login.setBackground(Color.blue);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setOpaque(false);
 		panel.setBounds(0, 0, 1000, 700);
 		this.add(panel);
-		ImageIcon i = new ImageIcon(new ImageIcon(getClass().getResource("/imagenes/fondo.png")).getImage().getScaledInstance(1000, 700, java.awt.Image.SCALE_SMOOTH));
+		/*ImageIcon i = new ImageIcon(new ImageIcon(getClass().getResource("fondo.png")).getImage().getScaledInstance(1000, 700, java.awt.Image.SCALE_SMOOTH));
 		JLabel fondo = new JLabel(i);
 		fondo.setBounds(0,0,1000,700);	
-		this.setContentPane(fondo);
+		this.setContentPane(fondo);*/
 		
-		ImageIcon capiIcon = new ImageIcon("images/capi.png");
-		this.setIconImage(capiIcon.getImage());
+		/*ImageIcon capiIcon = new ImageIcon("images/capi.png");
+		this.setIconImage(capiIcon.getImage());*/
 		
 		JLabel etiqueta1 = new JLabel("Bienvenidos");
 		etiqueta1.setSize(190,40);
 		etiqueta1.setLocation(400, 30);
 		//etiqueta1.setBackground(Color.decode("#fc86eb"));
 		etiqueta1.setOpaque(false);
-		etiqueta1.setForeground(Color.decode("#FFFFFF"));
+		etiqueta1.setForeground(Color.decode("#000000"));
 		etiqueta1.setFont(titulo);
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(etiqueta1);
 		
-		ImageIcon ic = new ImageIcon(new ImageIcon(getClass().getResource("/imagenes/capi.png")).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+		/*ImageIcon ic = new ImageIcon(new ImageIcon(getClass().getResource("capi.png")).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
 		JLabel capi = new JLabel(ic);
 		capi.setBounds(445, 88, 100, 100);
-		panel.add(capi);
+		panel.add(capi);*/
 		
 		JLabel etiqueta2 = new JLabel("Usuario");
 		etiqueta2.setBounds(390, 200, 90, 30);
@@ -136,10 +137,10 @@ public class primerView extends JFrame{
 		etiqueta2.setHorizontalAlignment(JLabel.LEFT);
 		panel.add(etiqueta2);
 		
-		ImageIcon icono = new ImageIcon(new ImageIcon(getClass().getResource("/imagenes/usuario.png")).getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
+		/*ImageIcon icono = new ImageIcon(new ImageIcon(getClass().getResource("usuario.png")).getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
 		JLabel usuario = new JLabel(icono);
 		usuario.setBounds(350, 200, 30, 30);
-		panel.add(usuario);
+		panel.add(usuario);*/
 		
 		JTextField correo = new JTextField();
 		correo.setBounds(372, 250, 247, 30);
@@ -148,10 +149,10 @@ public class primerView extends JFrame{
 		correo.setFont(etiquetas);
 		panel.add(correo);
 		
-		ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource("/imagenes/lok.png")).getImage().getScaledInstance(38, 38, java.awt.Image.SCALE_SMOOTH));
+		/*ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource("lok.png")).getImage().getScaledInstance(38, 38, java.awt.Image.SCALE_SMOOTH));
 		JLabel lock = new JLabel(icon);
 		lock.setBounds(350, 300, 38, 38);
-		panel.add(lock);
+		panel.add(lock);*/
 
 		JLabel etiqueta3 = new JLabel("Contraseña");
 		etiqueta3.setBounds(390, 305, 95, 30);
@@ -167,11 +168,11 @@ public class primerView extends JFrame{
 		pase.setFont(etiquetas);
 		panel.add(pase);
 		
-		ImageIcon icon2 = new ImageIcon(new ImageIcon(getClass().getResource("/imagenes/see.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH));
+		/*ImageIcon icon2 = new ImageIcon(new ImageIcon(getClass().getResource("see.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH));
 		JLabel see = new JLabel(icon2);
 		see.setBounds(627, 352, 25, 25);
 		see.setVisible(true);
-		panel.add(see);
+		panel.add(see);*/
 		
 		JCheckBox check = new JCheckBox();
 		check.setBounds(340, 400, 15, 15);
@@ -285,10 +286,10 @@ public class primerView extends JFrame{
 		regis.setOpaque(false);
 		regis.setBounds(0, 0, 1000, 700);
 		this.add(regis);
-		ImageIcon i = new ImageIcon(new ImageIcon(getClass().getResource("/imagenes/fondo.png")).getImage().getScaledInstance(1000, 700, java.awt.Image.SCALE_SMOOTH));
+		/*ImageIcon i = new ImageIcon(new ImageIcon(getClass().getResource("fondo.png")).getImage().getScaledInstance(1000, 700, java.awt.Image.SCALE_SMOOTH));
 		JLabel fondo = new JLabel(i);
 		fondo.setBounds(0,0,1000, 700);	
-		this.setContentPane(fondo);
+		this.setContentPane(fondo);*/
 		
 		JLabel etiqueta1 = new JLabel("Registro");
 		etiqueta1.setSize(180,40);
@@ -296,7 +297,7 @@ public class primerView extends JFrame{
 		etiqueta1.setOpaque(false);
 		etiqueta1.setFont(titulo);
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
-		etiqueta1.setForeground(Color.white); 
+		etiqueta1.setForeground(Color.black); 
 		regis.add(etiqueta1);
 		
 		JLabel etiqueta2 = new JLabel("Usuario");

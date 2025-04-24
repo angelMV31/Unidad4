@@ -8,7 +8,7 @@ import views.primerView;
 		
 		public primerController() {
 			
-			view = new primerView(null);
+			view = new primerView("Login");
 		}
 				
 		public void login(){
