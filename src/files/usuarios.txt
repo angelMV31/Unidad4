@@ -1,0 +1,5 @@
+Fabiola Camcho, fabycamacho@gmail.com, 100224, student
+Angel Mendoza, angelmendoza@gmail.com, 301105, admin
+1,1,1,student
+2,2,2,student
+3,3,3,admin
