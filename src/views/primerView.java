@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -27,7 +30,7 @@ import models.primerModel;
 
 public class primerView extends JFrame{
 	
-	public primerModel functions;
+	public primerModel functions, alta;
 
 	Font titulo = new Font("Arial", Font.BOLD, 31);
 	Font etiquetas = new Font("Arial", Font.BOLD,17);
@@ -44,6 +47,8 @@ public class primerView extends JFrame{
 		
 		functions = new primerModel();
 		
+		alta = new primerModel();;
+		
 		this.setTitle(title);
 		this.setVisible(true);
 		
@@ -55,10 +60,8 @@ public class primerView extends JFrame{
 		
 		this.setResizable(true);
 		
-		this.add(this.login());
+		this.add(login());
 		
-		//this.setMinimumSize(new Dimension(200,430));
-		//this.setMaximumSize(new Dimension(600,830));
 		JMenuBar barra = new JMenuBar(); //barra de munus
 		
 		JMenu menu3 = new JMenu("Cuenta");
@@ -103,32 +106,23 @@ public class primerView extends JFrame{
 		
 		this.setVisible(true);
 		this.setJMenuBar(barra);
-		this.validate();
 		this.revalidate();
 		this.repaint();
 		
 	}
 	
 	public JPanel login() {
-		JPanel login = new JPanel();
-		login.setLocation(0, 0);
-		login.setSize(1000, 700);
-		login.setOpaque(true);
-		login.setBackground(Color.black);
-		login.setVisible(true);
-		login.setLayout(null);
-		login.setBackground(Color.blue);
-		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setOpaque(false);
 		panel.setBounds(0, 0, 1000, 700);
-		this.add(panel);
 		
 		image = new ImageIcon("src/images/fondo.png").getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
 		i = new ImageIcon(image);
 		JLabel fondo = new JLabel(i);
-		fondo.setBounds(0,0,1000,700);	
+		fondo.setLayout(null);
+		fondo.setBounds(0,0,1000,700);
+		fondo.add(panel);
 		this.setContentPane(fondo);
 		
 		ImageIcon capiIcon = new ImageIcon("src/images/capi.png");
@@ -137,13 +131,11 @@ public class primerView extends JFrame{
 		JLabel etiqueta1 = new JLabel("Bienvenidos");
 		etiqueta1.setSize(190,40);
 		etiqueta1.setLocation(400, 30);
-		//etiqueta1.setBackground(Color.decode("#fc86eb"));
 		etiqueta1.setOpaque(false);
 		etiqueta1.setForeground(Color.decode("#000000"));
 		etiqueta1.setFont(titulo);
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(etiqueta1);
-		
 		
 		Image ic = new ImageIcon("src/images/capi.png").getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
 		ic2 = new ImageIcon(ic);
@@ -153,9 +145,6 @@ public class primerView extends JFrame{
 		
 		JLabel etiqueta2 = new JLabel("Usuario");
 		etiqueta2.setBounds(390, 200, 90, 30);
-		//etiqueta2.setSize(80,30);
-		//etiqueta2.setLocation(55, 50);
-		//etiqueta2.setBackground(Color.decode("#fc86eb"));
 		etiqueta2.setOpaque(false);
 		etiqueta2.setFont(etiquetas);
 		etiqueta2.setHorizontalAlignment(JLabel.LEFT);
@@ -307,7 +296,6 @@ public class primerView extends JFrame{
 		panel.repaint();
 		
 		return panel;
-		
 
 	}
 	
@@ -346,6 +334,14 @@ public class primerView extends JFrame{
 		nom.setOpaque(true);
 		nom.setFont(etiquetas);
 		regis.add(nom);
+		nom.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+		            e.consume();
+		    }
+		}});
 		
 		JLabel empresa = new JLabel("Empresa");
 		empresa.setBounds(197, 180, 90, 30);
@@ -360,6 +356,14 @@ public class primerView extends JFrame{
 		empresa2.setOpaque(true);
 		empresa2.setFont(etiquetas);
 		regis.add(empresa2);
+		empresa.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)) {
+		            e.consume();
+		        }
+		}});
 		
 		JLabel ambito = new JLabel("Ambito");
 		ambito.setBounds(197, 260, 100, 30);
@@ -374,7 +378,7 @@ public class primerView extends JFrame{
 		amb.setBounds(177, 300, 265, 30);
 		regis.add(amb);
 
-		JLabel roll = new JLabel("Rol");
+		JLabel roll = new JLabel("Cargo");
 		roll.setBounds(197, 340, 90, 30);
 		roll.setOpaque(false);
 		roll.setFont(etiquetas);
@@ -387,6 +391,14 @@ public class primerView extends JFrame{
 		rol.setOpaque(true);
 		rol.setFont(etiquetas);
 		regis.add(rol);
+		rol.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+		            e.consume();
+		        }
+		}});
 		
 		JLabel usuario = new JLabel("Nombre de Usuario");
 		usuario.setBounds(577, 100, 180, 30);
@@ -401,6 +413,14 @@ public class primerView extends JFrame{
 		usu.setOpaque(true);
 		usu.setFont(etiquetas);
 		regis.add(usu);
+		usu.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c) && !Character.isDigit(c)) {
+		            e.consume();
+		    }
+		}});
 		
 		JLabel etiqueta2 = new JLabel("Correo");
 		etiqueta2.setBounds(577, 180, 90, 30);
@@ -415,6 +435,15 @@ public class primerView extends JFrame{
 		correo.setOpaque(true);
 		correo.setFont(etiquetas);
 		regis.add(correo);
+		correo.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isWhitespace(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		
 		JLabel contras = new JLabel("Contraseña");
 		contras.setBounds(577, 260, 100, 30);
@@ -423,12 +452,20 @@ public class primerView extends JFrame{
 		contras.setHorizontalAlignment(JLabel.LEFT);
 		regis.add(contras);
 		
-		JTextField contra = new JTextField();
+		JPasswordField contra = new JPasswordField();
 		contra.setBounds(557, 300, 265, 30);
 		contra.setBackground(Color.WHITE);
 		contra.setOpaque(true);
 		contra.setFont(etiquetas);
 		regis.add(contra);
+		contra.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isWhitespace(c)) {
+		            e.consume();
+		    }
+		}});
 		
 		JLabel RepContras = new JLabel("Confirmar contraseña");
 		RepContras.setBounds(577, 340, 200, 30);
@@ -437,12 +474,20 @@ public class primerView extends JFrame{
 		RepContras.setHorizontalAlignment(JLabel.LEFT);
 		regis.add(RepContras);
 		
-		JTextField RepContras2 = new JTextField();
+		JPasswordField RepContras2 = new JPasswordField();
 		RepContras2.setBounds(557, 380, 265, 30);
 		RepContras2.setBackground(Color.WHITE);
 		RepContras2.setOpaque(true);
 		RepContras2.setFont(etiquetas);
 		regis.add(RepContras2);
+		RepContras2.addKeyListener(new KeyAdapter() {
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isWhitespace(c)) {
+		            e.consume();
+		    }
+		}});
+		
 		
 		ButtonGroup terminos = new ButtonGroup();
 		
@@ -468,6 +513,17 @@ public class primerView extends JFrame{
 		acceso.setForeground(Color.white);
 		acceso.addActionListener(new ActionListener() {
 
+		boolean bandera1 = false;
+		boolean bandera2 = false;
+		boolean bandera3 = false;
+		boolean bandera4 = false;
+		boolean bandera5 = false;
+		boolean bandera6 = false;
+		boolean bandera7 = false;
+		boolean bandera8 = false;
+		boolean bandera9 = false;
+		boolean usuario2 = false;
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Hola");
@@ -477,49 +533,70 @@ public class primerView extends JFrame{
 				}
 				else
 					nom.setBorder(BorderFactory.createLineBorder(Color.green));
+					bandera1 = true;
 				if(empresa2.getText().equals("")) {//2
 					empresa2.setBorder(BorderFactory.createLineBorder(Color.red));
 				}
 				else
 					empresa2.setBorder(BorderFactory.createLineBorder(Color.green));
+					bandera2 = true;
 				if(rol.getText().equals("")) {//4
 					rol.setBorder(BorderFactory.createLineBorder(Color.red));	
 				}
 				else
 					rol.setBorder(BorderFactory.createLineBorder(Color.green));
+					bandera3 = true;
 				if(usu.getText().equals("")) {//5
 					usu.setBorder(BorderFactory.createLineBorder(Color.red));	
 				}
 				else
 					usu.setBorder(BorderFactory.createLineBorder(Color.green));
+					bandera4 = true;
 				if(correo.getText().equals("")) {//6
 					correo.setBorder(BorderFactory.createLineBorder(Color.red));
 				}
 				else
 					correo.setBorder(BorderFactory.createLineBorder(Color.green));
+					bandera5 = true;
 				if(contra.getText().equals("")) {//7
 					contra.setBorder(BorderFactory.createLineBorder(Color.red));	
 				}
 				else
 					contra.setBorder(BorderFactory.createLineBorder(Color.green));
+					bandera6 = true;
 				if(RepContras2.getText().equals("")) {//8
 					RepContras2.setBorder(BorderFactory.createLineBorder(Color.red));	
 				}
 				else
 					RepContras2.setBorder(BorderFactory.createLineBorder(Color.green));
-				if(!term1.isSelected() && !term2.isSelected()) {
-					term1.setForeground(Color.red);
-					term2.setForeground(Color.red);				}
-				else {
-					term1.setForeground(Color.green);
-					term2.setForeground(Color.green);
-				}
+					bandera7 = true;
 				if (amb.getSelectedIndex() == 0) { 
 				    amb.setBorder(BorderFactory.createLineBorder(Color.red));
 				} else {
 				    amb.setBorder(BorderFactory.createLineBorder(Color.green));
+				    bandera8 = true;
 				}
-					
+				if(!term1.isSelected() && !term2.isSelected()) {
+					term1.setForeground(Color.red);
+					term2.setForeground(Color.red);	
+					JOptionPane.showMessageDialog(null, "No se aceptaron terminos y condiciones", "Terminos", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					term1.setForeground(Color.green);
+					term2.setForeground(Color.green);
+					bandera9 = true;
+				}
+				if(contra.getText().equals(RepContras2.getText())) {
+					if(bandera1 && bandera2 && bandera3 && bandera4 && bandera5 && bandera6 && bandera7 && bandera8 && bandera9) {
+						usuario2 = alta.alta(nom.getText(), empresa2.getText(), amb.getSelectedItem().toString(), rol.getText(), usu.getText(), correo.getText(), contra.getText());
+						System.out.println("Alta: "+usuario2);
+						if(usuario2) {
+							JOptionPane.showMessageDialog(null, "Usuario dado de alta correctamente", "Alta Exitosa", JOptionPane.INFORMATION_MESSAGE);
+						}
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Contraseña", JOptionPane.WARNING_MESSAGE);
 					
 			}
 			

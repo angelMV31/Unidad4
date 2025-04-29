@@ -1,5 +1,10 @@
-Fabiola Camcho, fabycamacho@gmail.com, 100224, student
-Angel Mendoza, angelmendoza@gmail.com, 301105, admin
-1,1,1,student
-2,2,2,student
-3,3,3,admin
+Fabiola Camcho|Nose|Tecnologia|student|fabycc|fabycamacho@gmail.com|100224
+Angel Mendoza|Nose|Tecnologia|admin|angelmv|angelmendoza@gmail.com|301105
+Emiliano Murillo|Chevrolet|Tecnologia|Secretaria|elemi|emiliano@gmail.com|emiliano123@
+a|a|Tecnologia|a|a|a|a
+a|a|Tecnologia|a|a|a|a
+b|b|Ciencia|b|b|b|b
+c|c|Tecnologia|c|c|c|c
+d|d|Ciencia|d|d|d|d
+q|q|Ciencia|q|q|q|q
+w|w|Salud|w|w|w|w

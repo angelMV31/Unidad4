@@ -7,18 +7,14 @@ import views.primerView;
 		public primerView view;
 		
 		public primerController() {
-			
 			view = new primerView("Login");
 		}
 				
 		public void login(){
-			
 			view.login();
-			
 		}
 		
 		public void register() {
-			
 			view.registro();
 		}
 		

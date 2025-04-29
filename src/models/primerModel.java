@@ -1,7 +1,12 @@
 package models;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+
+import javax.swing.JOptionPane;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 
 public class primerModel {
 
@@ -17,11 +22,11 @@ public class primerModel {
 		 	String usuario;
 		 	
 		 	while((usuario = lector.readLine()) != null) {
-		 		String [] datos = usuario.split(",");
+		 		String [] datos = usuario.split("\\|");
 		 		
-		 		if(datos.length == 4) {
-		 			String correo = datos[1].trim();
-		 			String contra = datos[2].trim();
+		 		if(datos.length == 7) {
+		 			String correo = datos[5].trim();
+		 			String contra = datos[6].trim();
 		 			
 		 			if(u.equals(correo) && c.equals(contra)) {
 		 				return true;
@@ -40,29 +45,19 @@ public class primerModel {
 		 
 	}
 	
-	public boolean alta(String u, String c) {
+	public boolean alta(String nombre, String empresa, String ambito, String rol, String usuario, String correo, String contra) {
 		 try{
-			 
-			 	BufferedReader escritor = new BufferedReader(new FileReader("src/files/usuarios.txt"));
-			 	String usuario;
+			 	BufferedWriter escritor = new BufferedWriter(new FileWriter("src/files/usuarios.txt",true));
 			 	
-			 	while((usuario = escritor.readLine()) != null) {
-			 		String [] datos = usuario.split(",");
-			 		
-			 		if(datos.length == 4) {
-			 			String correo = datos[1].trim();
-			 			String contra = datos[2].trim();
-			 			
-			 			if(u.equals(correo) && c.equals(contra)) {
-			 				return true;
-			 			}
-			 		}
-			 	}
-			 	
+			 	String user = nombre+"|"+empresa+"|"+ambito+"|"+rol+"|"+usuario+"|"+correo+"|"+contra;
+	        
+			 	escritor.newLine();
+			 	escritor.write(user);
+		        
+		        return true;
 			 }
 			 
 			 catch (Exception e) {
-					
 					e.printStackTrace();
 					System.out.println("Error"); 
 			 }
