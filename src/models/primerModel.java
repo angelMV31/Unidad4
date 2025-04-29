@@ -53,7 +53,8 @@ public class primerModel {
 	        
 			 	escritor.newLine();
 			 	escritor.write(user);
-		        
+		        escritor.close();
+			 	
 		        return true;
 			 }
 			 

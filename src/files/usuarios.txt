@@ -8,3 +8,4 @@ c|c|Tecnologia|c|c|c|c
 d|d|Ciencia|d|d|d|d
 q|q|Ciencia|q|q|q|q
 w|w|Salud|w|w|w|w
+u|u|Ciencia|u|u|u|u
