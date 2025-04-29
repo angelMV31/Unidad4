@@ -439,7 +439,7 @@ public class primerView extends JFrame{
 		    @Override
 		    public void keyTyped(KeyEvent e) {
 		        char c = e.getKeyChar();
-		        if (!Character.isWhitespace(c)) {
+		        if (Character.isWhitespace(c)) {
 		            e.consume();
 		        }
 		    }
@@ -462,7 +462,7 @@ public class primerView extends JFrame{
 		    @Override
 		    public void keyTyped(KeyEvent e) {
 		        char c = e.getKeyChar();
-		        if (!Character.isWhitespace(c)) {
+		        if (Character.isWhitespace(c)) {
 		            e.consume();
 		    }
 		}});
@@ -483,7 +483,7 @@ public class primerView extends JFrame{
 		RepContras2.addKeyListener(new KeyAdapter() {
 		    public void keyTyped(KeyEvent e) {
 		        char c = e.getKeyChar();
-		        if (!Character.isWhitespace(c)) {
+		        if (Character.isWhitespace(c)) {
 		            e.consume();
 		    }
 		}});
