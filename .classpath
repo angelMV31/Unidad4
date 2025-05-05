@@ -6,5 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="images/" kind="src" path="src"/>
+	<classpathentry kind="lib" path="src/files/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

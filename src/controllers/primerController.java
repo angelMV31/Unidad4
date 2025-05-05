@@ -7,7 +7,7 @@ import views.primerView;
 		public primerView view;
 		
 		public primerController() {
-			view = new primerView("Login");
+			view = new primerView("Sistema");
 		}
 				
 		public void login(){

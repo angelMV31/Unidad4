@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 
 public class primerModel {
 
+
 	public primerModel() {
 		
 	}
@@ -45,7 +46,7 @@ public class primerModel {
 		 
 	}
 	
-	public boolean alta(String nombre, String empresa, String ambito, String rol, String usuario, String correo, String contra) {
+	public static boolean alta(String nombre, String empresa, String ambito, String rol, String usuario, String correo, String contra) {
 		 try{
 			 	BufferedWriter escritor = new BufferedWriter(new FileWriter("src/files/usuarios.txt",true));
 			 	

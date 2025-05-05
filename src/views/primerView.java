@@ -3,6 +3,7 @@ package views;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -26,12 +27,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controllers.homeControl;
+import models.homeModel;
 import models.primerModel;
 
 public class primerView extends JFrame{
 	
 	public primerModel functions, alta;
 
+	homeControl home;
+	
+	private JFrame frame = new JFrame();
 	Font titulo = new Font("Arial", Font.BOLD, 31);
 	Font etiquetas = new Font("Arial", Font.BOLD,17);
 	Font et = new Font("Arial", Font.BOLD,13);
@@ -43,13 +49,13 @@ public class primerView extends JFrame{
 	Image icono2;
 	Image i2;
 	
+	
+	
 	public primerView(String title) {
 		
 		functions = new primerModel();
 		
-		alta = new primerModel();;
-		
-		this.setTitle(title);
+		/*this.setTitle(title);
 		this.setVisible(true);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +66,7 @@ public class primerView extends JFrame{
 		
 		this.setResizable(true);
 		
-		this.add(login());
+		this.login();
 		
 		JMenuBar barra = new JMenuBar(); //barra de munus
 		
@@ -107,11 +113,18 @@ public class primerView extends JFrame{
 		this.setVisible(true);
 		this.setJMenuBar(barra);
 		this.revalidate();
-		this.repaint();
+		this.repaint();*/
 		
 	}
 	
-	public JPanel login() {
+	public void login() {
+		frame.setTitle("Login");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 		frame.setVisible(true);
+		frame.setBounds(0, 0, 1000, 700);
+		frame.setLocationRelativeTo(null);
+		
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setOpaque(false);
@@ -120,13 +133,13 @@ public class primerView extends JFrame{
 		image = new ImageIcon("src/images/fondo.png").getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
 		i = new ImageIcon(image);
 		JLabel fondo = new JLabel(i);
+		fondo.setBounds(0, 0, 1000, 700);
 		fondo.setLayout(null);
-		fondo.setBounds(0,0,1000,700);
+		frame.setContentPane(fondo);
 		fondo.add(panel);
-		this.setContentPane(fondo);
 		
 		ImageIcon capiIcon = new ImageIcon("src/images/capi.png");
-		this.setIconImage(capiIcon.getImage());
+		frame.setIconImage(capiIcon.getImage());
 		
 		JLabel etiqueta1 = new JLabel("Bienvenidos");
 		etiqueta1.setSize(190,40);
@@ -171,7 +184,6 @@ public class primerView extends JFrame{
 
 		JLabel etiqueta3 = new JLabel("Contraseña");
 		etiqueta3.setBounds(390, 305, 95, 30);
-		//etiqueta3.setBackground(Color.decode("#fc86eb"));
 		etiqueta3.setOpaque(false);
 		etiqueta3.setFont(etiquetas);
 		etiqueta3.setHorizontalAlignment(JLabel.LEFT);
@@ -200,7 +212,6 @@ public class primerView extends JFrame{
 		
 		JLabel etiqueta4 = new JLabel("Recuerdarme");
 		etiqueta4.setBounds(362, 392, 90, 30);
-		//etiqueta4.setBackground(Color.decode("#fc86eb"));
 		etiqueta4.setOpaque(false);
 		etiqueta4.setFont(et);
 		etiqueta4.setHorizontalAlignment(JLabel.CENTER);
@@ -260,8 +271,9 @@ public class primerView extends JFrame{
 
 					if (usuario) {
 						JOptionPane.showMessageDialog(null, message, "Estatus", JOptionPane.INFORMATION_MESSAGE);
+						frame.dispose();
+						home = new homeControl();
 						
-						manager("home");
 					} else {
 						JOptionPane.showMessageDialog(null, message2, "Estatus", JOptionPane.WARNING_MESSAGE);
 					}
@@ -283,23 +295,25 @@ public class primerView extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				manager("registro");
+				frame.dispose();
+				registro();
 			}
 			
 		});
-		 
 		panel.add(irRegistro);
 		
-		panel.revalidate();
-		
-		panel.repaint();
-		
-		return panel;
+		frame.repaint();
 
+		panel.repaint();
 	}
 	
-	public JPanel registro() {
+	public void registro() {
+		frame.setTitle("Registro");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 		frame.setVisible(true);
+		frame.setBounds(0, 0, 1000, 700);
+		frame.setLocationRelativeTo(null);
+		
 		JPanel regis = new JPanel();
 		regis.setLayout(null);
 		regis.setOpaque(false);
@@ -310,7 +324,8 @@ public class primerView extends JFrame{
 		i = new ImageIcon(image);
 		JLabel fondo = new JLabel(i);
 		fondo.setBounds(0,0,1000, 700);	
-		this.setContentPane(fondo);
+		frame.setContentPane(fondo);
+		fondo.add(regis);
 		
 		JLabel etiqueta1 = new JLabel("Registro");
 		etiqueta1.setSize(180,40);
@@ -524,7 +539,6 @@ public class primerView extends JFrame{
 		boolean bandera9 = false;
 		boolean usuario2 = false;
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Hola");
 				
@@ -576,22 +590,31 @@ public class primerView extends JFrame{
 				    amb.setBorder(BorderFactory.createLineBorder(Color.green));
 				    bandera8 = true;
 				}
-				if(!term1.isSelected() && !term2.isSelected()) {
+				if(!term1.isSelected()) {
 					term1.setForeground(Color.red);
 					term2.setForeground(Color.red);	
 					JOptionPane.showMessageDialog(null, "No se aceptaron terminos y condiciones", "Terminos", JOptionPane.WARNING_MESSAGE);
 				}
 				else {
 					term1.setForeground(Color.green);
-					term2.setForeground(Color.green);
 					bandera9 = true;
 				}
 				if(contra.getText().equals(RepContras2.getText())) {
 					if(bandera1 && bandera2 && bandera3 && bandera4 && bandera5 && bandera6 && bandera7 && bandera8 && bandera9) {
-						usuario2 = alta.alta(nom.getText(), empresa2.getText(), amb.getSelectedItem().toString(), rol.getText(), usu.getText(), correo.getText(), contra.getText());
+						String a = nom.getText();
+						String b = empresa2.getText();
+						String c = amb.getSelectedItem().toString();
+						String d = rol.getText();
+						String t = usu.getText();
+						String f = correo.getText();
+						String g = contra.getText();
+																
+						usuario2 = /*primerModel.alta(a, b, c, d, t, f, g);*/alta.alta(a, b, c, d, t, f, g);
 						System.out.println("Alta: "+usuario2);
 						if(usuario2) {
 							JOptionPane.showMessageDialog(null, "Usuario dado de alta correctamente", "Alta Exitosa", JOptionPane.INFORMATION_MESSAGE);
+							frame.dispose();
+							login();
 						}
 					}
 				}
@@ -611,89 +634,19 @@ public class primerView extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				manager("login");
+				
+				frame.dispose();
+				login();
 			}
 			
 		});
 		
-		this.add(irLogin);
+		regis.add(irLogin);
 		
-		return regis;
-	}
-	
-	public JPanel home() {
+		frame.repaint();
+
+		regis.repaint();
 		
-		JPanel login = new JPanel();
-		login.setLocation(0, 0);
-		login.setSize(1000, 700);
-		login.setOpaque(true);
-		login.setBackground(Color.black);
-		login.setVisible(true);
-		login.setLayout(null);
-		login.setBackground(Color.blue);
-		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setOpaque(false);
-		panel.setBounds(0, 0, 1000, 700);
-		this.add(panel);
-		
-		image = new ImageIcon("src/images/fondo.png").getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
-		i = new ImageIcon(image);
-		JLabel fondo = new JLabel(i);
-		fondo.setBounds(0,0,1000,700);	
-		this.setContentPane(fondo);
-		
-		JLabel etiqueta1 = new JLabel("Home");
-		etiqueta1.setSize(190,40);
-		etiqueta1.setLocation(400, 30);
-		etiqueta1.setOpaque(false);
-		etiqueta1.setForeground(Color.decode("#000000"));
-		etiqueta1.setFont(titulo);
-		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
-		panel.add(etiqueta1);
-		
-		Image ic = new ImageIcon("src/images/capi.png").getImage().getScaledInstance(350, 350, java.awt.Image.SCALE_SMOOTH);
-		ic2 = new ImageIcon(ic);
-		JLabel capi = new JLabel(ic2);
-		capi.setBounds(100, 188, 350, 350);
-		panel.add(capi);
-		
-		JLabel etiqueta2 = new JLabel("Servicios");
-		etiqueta2.setBounds(650, 250, 150, 40);
-		etiqueta2.setOpaque(false);
-		etiqueta2.setForeground(Color.white);
-		etiqueta2.setFont(titulo);
-		etiqueta2.setHorizontalAlignment(JLabel.LEFT);
-		panel.add(etiqueta2);
-		
-		panel.revalidate();
-		
-		panel.repaint();
-		
-		return panel;
-		
-	}
-	
-	public void manager(String target) {
-		
-		this.getContentPane().removeAll();
-		
-		if(target.equals("registro")) {
-			this.add(registro());			
-		}
-		if(target.equals("login")) {
-			this.add(login());			
-		}
-		if(target.equals("home")) {
-			this.add(home());			
-		}
-		
-		this.repaint();
-		this.revalidate();
-		
-		System.out.println("Hola");
 	}
 	
 }
