@@ -55,6 +55,7 @@ public class homeView extends JFrame{
 	    frame.setBounds(0, 0, 1000, 700);
 	    frame.setLocationRelativeTo(null);
 	    frame.setVisible(true);
+	    frame.setResizable(false);
 
 	    image = new ImageIcon("src/images/fondo.png").getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
 	    i = new ImageIcon(image);
@@ -144,6 +145,7 @@ public class homeView extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				prod = new ProductController();
+				prod.products();
 			}	
 	    });
 	    panelBotones.add(btnCatalogo);
@@ -274,7 +276,7 @@ public class homeView extends JFrame{
 	    label3.setBounds(10, 90, 200, 30);
 	    tarjeta3.add(label3);
 
-	    JLabel valor3 = new JLabel("142");
+	    JLabel valor3 = new JLabel("Seleccione catálogo");
 	    valor3.setFont(et);
 	    valor3.setBounds(10, 120, 200, 20);
 	    tarjeta3.add(valor3);
