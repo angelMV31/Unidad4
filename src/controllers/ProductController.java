@@ -23,6 +23,8 @@ public class ProductController {
 		
 	}
 	
-	
+	public void addProduct() {
+		view.addProducts();
+	}
 
 }

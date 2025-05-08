@@ -123,7 +123,7 @@ public class primerView extends JFrame{
  		frame.setVisible(true);
 		frame.setBounds(0, 0, 1000, 700);
 		frame.setLocationRelativeTo(null);
-		
+		frame.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);

@@ -12,8 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -85,37 +87,156 @@ public class ProductView {
 	    tablaProducts.setOpaque(false);
 	    tarjeta1.add(scrollPane);
 	    
-		int x = 70;
+		JButton eliminar = new JButton("Eliminar producto");
+		eliminar.setBounds(100, 550, 200, 30);
+		eliminar.setFont(etiquetas);
+		eliminar.setBackground(Color.red);
+		eliminar.setForeground(Color.white);
+		fondo.add(eliminar);
 		
-		for (Object product1 : data) {
+		JButton add = new JButton("Añadir producto");
+		add.setBounds(700, 550, 200, 30);
+		add.setFont(etiquetas);
+		add.setBackground(Color.green);
+		add.setForeground(Color.white);
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				ventana.dispose();
+				prod = new ProductController();
+				prod.addProduct();
+				
+			}
 			
-			JSONObject product = (JSONObject) product1;
-			System.out.println(product.get("nombre"));
-			
-			JLabel lblNewLabel2 = new JLabel((String) product.get("nombre"));
-			lblNewLabel2.setForeground(new Color(0, 0, 0));
-			lblNewLabel2.setFont(new Font("Kefa", Font.PLAIN, 24));
-			lblNewLabel2.setBounds(107, x, 210, 26);
-			lblNewLabel2.setHorizontalAlignment(JLabel.CENTER);
-			parseTestData(product);
-			panel.add(lblNewLabel2);
-			
-			x+=35;
-			
-		}
+		});
+		fondo.add(add);
+		 
+	}
+	
+	public void addProducts() {
+		JFrame ventana = new JFrame();
+		ventana.setTitle("Productos");
+		ventana.setBounds(0, 0, 1000, 700);
+		ventana.setLocationRelativeTo(null);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setResizable(false);
+		ventana.setVisible(true);
 		
-		//data.forEach( emp -> parseTestData( (JSONObject) emp ) );
+		ImageIcon capiIcon = new ImageIcon("src/images/capi.png");
+		ventana.setIconImage(capiIcon.getImage());
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		ventana.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+				
+		image = new ImageIcon("src/images/fondo.png").getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
+		i = new ImageIcon(image);
+		JLabel fondo = new JLabel(i);
+		fondo.setBounds(0, 0, 1000, 700);
+		fondo.setLayout(null);
+		ventana.setContentPane(fondo);
+		fondo.add(panel);
+
+		JLabel lblNewLabel = new JLabel("Añadir");
+		lblNewLabel.setForeground(Color.white);
+		lblNewLabel.setFont(titulo);
+		lblNewLabel.setBounds(400,15,190,30);
+		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
+		fondo.add(lblNewLabel);
+		
+		JLabel etiqueta2 = new JLabel("ID");
+		etiqueta2.setBounds(390, 120, 90, 30);
+		etiqueta2.setOpaque(false);
+		etiqueta2.setFont(etiquetas);
+		etiqueta2.setHorizontalAlignment(JLabel.LEFT);
+		fondo.add(etiqueta2);
+		
+		JTextField id = new JTextField();
+		id.setBounds(372, 170, 247, 30);
+		id.setBackground(Color.WHITE);
+		id.setOpaque(true);
+		id.setFont(etiquetas);
+		fondo.add(id);
+
+		JLabel etiqueta3 = new JLabel("Nombre");
+		etiqueta3.setBounds(390, 220, 95, 30);
+		etiqueta3.setOpaque(false);
+		etiqueta3.setFont(etiquetas);
+		etiqueta3.setHorizontalAlignment(JLabel.LEFT);
+		fondo.add(etiqueta3);
+		
+		JTextField nom = new JTextField();
+		nom.setBounds(372, 270, 247, 30);
+		nom.setBackground(Color.WHITE);
+		nom.setFont(etiquetas);
+		fondo.add(nom);
+		
+		JLabel etiqueta22 = new JLabel("Precio");
+		etiqueta22.setBounds(390, 320, 90, 30);
+		etiqueta22.setOpaque(false);
+		etiqueta22.setFont(etiquetas);
+		etiqueta22.setHorizontalAlignment(JLabel.LEFT);
+		fondo.add(etiqueta22);
+		
+		JTextField precio = new JTextField();
+		precio.setBounds(372, 370, 247, 30);
+		precio.setBackground(Color.WHITE);
+		precio.setOpaque(true);
+		precio.setFont(etiquetas);
+		fondo.add(precio);
+
+		JLabel etiqueta32 = new JLabel("Stock");
+		etiqueta32.setBounds(390, 420, 95, 30);
+		etiqueta32.setOpaque(false);
+		etiqueta32.setFont(etiquetas);
+		etiqueta32.setHorizontalAlignment(JLabel.LEFT);
+		fondo.add(etiqueta32);
+		
+		JTextField stock = new JTextField();
+		stock.setBounds(372, 470, 247, 30);
+		stock.setBackground(Color.WHITE);
+		stock.setFont(etiquetas);
+		fondo.add(stock);
+		
+		JButton add = new JButton("Añadir producto");
+		add.setBounds(700, 550, 200, 30);
+		add.setFont(etiquetas);
+		add.setBackground(Color.green);
+		add.setForeground(Color.white);
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int identi = Integer.parseInt(id.getText());
+				String nombre = nom.getText();
+				double price = Double.parseDouble(precio.getText());
+				int disp = Integer.parseInt(stock.getText());
+				
+				p = new ProducModel();
+				p.addProducto(identi, nombre, price, disp);
+				ventana.dispose();
+				prod = new ProductController();
+				prod.products();
+				
+			}
+			
+		});
+		fondo.add(add);
 		 
 	}
 	
 	private static void parseTestData(JSONObject product)
     {
 		// Obtener valores directamente del objeto producto
+		int identi = (int) product.get("ID");
 		String nombre = (String) product.get("nombre");
         double precio = (double) product.get("precio");
-        long stock = (long) product.get("stock");
+        int stock = (int) product.get("stock");
 
-        System.out.println("Nombre: " + nombre + ", Precio: $" + precio + ", Stock: " + stock);
+        System.out.println("ID: " + identi + "Nombre: " + nombre + ", Precio: $" + precio + ", Stock: " + stock);
 	    
     }
 }
