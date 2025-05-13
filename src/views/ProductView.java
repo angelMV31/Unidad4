@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -92,6 +93,20 @@ public class ProductView {
 		eliminar.setFont(etiquetas);
 		eliminar.setBackground(Color.red);
 		eliminar.setForeground(Color.white);
+		eliminar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int eliminar = Integer.parseInt(JOptionPane.showInputDialog(null, "Eliminar producto", "Ingrese el ID del producto", JOptionPane.QUESTION_MESSAGE));
+				p = new ProducModel();
+				p.deleteProduct(eliminar);
+				ventana.dispose();
+				prod = new ProductController();
+				prod.products();
+			}
+			
+		});
 		fondo.add(eliminar);
 		
 		JButton add = new JButton("Añadir producto");

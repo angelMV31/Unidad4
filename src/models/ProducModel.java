@@ -92,6 +92,62 @@ public class ProducModel {
 	    return productos;
 	}
 	
+	public boolean deleteProduct(int id) {
+		
+		JSONParser jsonParser = new JSONParser();
+
+	    try (FileReader lector = new FileReader("src/files/products.json")) {
+	        Object obj = jsonParser.parse(lector);
+	        JSONObject jsonObject = (JSONObject) obj;
+
+	        JSONArray listaProductos = (JSONArray) jsonObject.get("productos");
+
+	        boolean encontrado = false;
+
+	        for (int i = 0; i < listaProductos.size(); i++) {
+	            JSONObject producto = (JSONObject) listaProductos.get(i);
+	            long productoId = (long) producto.get("ID");
+
+	            if (productoId == id) {
+	                listaProductos.remove(i);
+	                encontrado = true;
+	                break;
+	            }
+	        }
+
+	        if (encontrado) {
+	            try (FileWriter escritor = new FileWriter("src/files/products.json")) {
+	            	escritor.write(jsonObject.toJSONString());
+	            	escritor.flush();
+	                return true;
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        } else {
+	            System.out.println("Producto con ID " + id + " no encontrado.");
+	        }
+
+	    }
+	    
+	        catch (FileNotFoundException e) 
+	        {
+	        	System.out.println("Error");
+	            e.printStackTrace();
+	        } 
+	        catch (IOException e) 
+	        {
+	        	System.out.println("Error");
+	            e.printStackTrace();
+	        } 
+	        catch (ParseException e) 
+	        {
+	        	System.out.println("Error");
+	            e.printStackTrace();
+	        }
+		
+		return false;
+	}
+	
 	public boolean addProducto(int identi, String nombre, double precio, int disp) {
 		
 		JSONParser jsonParser = new JSONParser();
