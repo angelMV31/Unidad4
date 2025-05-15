@@ -22,6 +22,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import controllers.ProductController;
+import controllers.primerController;
 import models.ProducModel;
 
 public class ProductView {
@@ -127,6 +128,23 @@ public class ProductView {
 			
 		});
 		fondo.add(add);
+		
+		JButton volver = new JButton("Volver");
+		volver.setBounds(400, 600, 200, 30);
+		volver.setFont(etiquetas);
+		volver.setBackground(Color.BLUE);
+		volver.setForeground(Color.white);
+		volver.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventana.dispose();
+				primerController view = new primerController();
+				view.login();
+			}
+			
+		});
+		fondo.add(volver);
 		 
 	}
 	

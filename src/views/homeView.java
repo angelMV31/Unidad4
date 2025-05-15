@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import controllers.ProductController;
+import controllers.UserController;
 import controllers.homeControl;
 import models.homeModel;
 import models.primerModel;
@@ -116,6 +117,14 @@ public class homeView extends JFrame{
 	    btnUsuarios.setFont(etiquetas);
 	    btnUsuarios.setForeground(Color.WHITE);
 	    btnUsuarios.setBackground(new Color(0, 102, 204));
+	    btnUsuarios.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UserController uc = new UserController();
+				uc.usuarios();
+			}	
+	    });
 	    panelBotones.add(btnUsuarios);
 
 	    image = new ImageIcon("src/images/registro.png").getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
