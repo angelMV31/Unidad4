@@ -58,9 +58,36 @@ private ArrayList<User> users = new ArrayList<User>();
 			} catch (Exception e) {}
 		}
 		
-		
-		
 		return users; 
 		
+	}
+	
+	public boolean add(String name,String email,String rol, String telefono) {
+		String query = "INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `create_at`, `update_at`) VALUES (NULL, '"+name+"', '"+email+"', '"+rol+"', '"+telefono+"', NULL, NULL);";
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "");
+			stmt = (Statement) conn.createStatement();
+			
+			int rs = ((java.sql.Statement) stmt).executeUpdate(query);
+			
+			if(rs>0)
+				return true;
+			
+			return true; 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				((Connection) stmt).close();
+				conn.close();
+			} catch (Exception e) {}
+		}
+		
+		return false; 
 	}
 }
