@@ -19,4 +19,9 @@ public class UserController {
 		ArrayList<User> users = user.get();
 		view.mostrarUsuarios(users);
 	}
+	
+	public void update(User userToUpdate)
+	{
+		view.actualizar(userToUpdate);
+	}
 }

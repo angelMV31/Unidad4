@@ -84,9 +84,18 @@ public class UserView {
 		JPanel tarjeta1 = new JPanel();
 	    tarjeta1.setBounds(100, 200, 800, 300);
 	    tarjeta1.setOpaque(true);
-	    
 	    tarjeta1.setLayout(null);
 	    fondo.add(tarjeta1);
+	    
+	    /*String [] atributos = {"ID", "Nombre", "Email", "Rol", "Teléfono", "Create_at", "Update_at"};
+	    
+	    
+	    JTable tablaProducts = new JTable(productos, atributos);
+	    JScrollPane scrollPane = new JScrollPane(tablaProducts);
+	    scrollPane.setBounds(0, 0, 800, 300);
+	    scrollPane.setOpaque(false);
+	    tablaProducts.setOpaque(false);
+	    tarjeta1.add(scrollPane);*/
 	    
 	    int y = 10;
 	    
@@ -97,6 +106,21 @@ public class UserView {
 	    	userLabel.setFont(etiquetas);
 	    	userLabel.setBounds(10, y, 200, 30);
 	    	tarjeta1.add(userLabel);
+	    	
+	    	JButton actualiza = new JButton("Editar");
+	    	actualiza.setBounds(650,y,80,30);
+	    	actualiza.setFont(et);
+	    	actualiza.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ventana.dispose();
+					UserController uc = new UserController();
+					uc.update(user);
+				}
+	    		
+	    	});
+	    	tarjeta1.add(actualiza);
 	    	
 	    	y+=40;
 	    }
@@ -361,5 +385,170 @@ public class UserView {
 		regis.repaint();
 		
 	}
+	
+	public void actualizar(User user) {
+		JFrame frame = new JFrame();
+		frame.setTitle("Actualizar");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 		frame.setVisible(true);
+		frame.setBounds(0, 0, 1000, 700);
+		frame.setLocationRelativeTo(null);
+		
+		JPanel regis = new JPanel();
+		regis.setLayout(null);
+		regis.setOpaque(false);
+		regis.setBounds(0, 0, 1000, 700);
+		frame.add(regis);
+		
+		image = new ImageIcon("src/images/fondo.png").getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
+		i = new ImageIcon(image);
+		JLabel fondo = new JLabel(i);
+		fondo.setBounds(0,0,1000, 700);	
+		frame.setContentPane(fondo);
+		fondo.add(regis);
+		
+		JLabel etiqueta1 = new JLabel("Registro");
+		etiqueta1.setSize(180,40);
+		etiqueta1.setLocation(407, 15);
+		etiqueta1.setOpaque(false);
+		etiqueta1.setFont(titulo);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setForeground(Color.black); 
+		regis.add(etiqueta1);
+
+		JLabel nombre = new JLabel("Nombre");
+		nombre.setBounds(197, 100, 90, 30);
+		nombre.setOpaque(false);
+		nombre.setFont(etiquetas);
+		nombre.setHorizontalAlignment(JLabel.LEFT);
+		regis.add(nombre);
+		
+		JTextField nom = new JTextField("");
+		nom.setBounds(177, 140, 265, 30);
+		nom.setBackground(Color.WHITE);
+		nom.setOpaque(true);
+		nom.setText(user.name);
+		nom.setFont(etiquetas);
+		regis.add(nom);
+		nom.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+		            e.consume();
+		    }
+		}});
+		
+		JLabel etiqueta2 = new JLabel("Correo");
+		etiqueta2.setBounds(197, 180, 90, 30);
+		etiqueta2.setOpaque(false);
+		etiqueta2.setFont(etiquetas);
+		etiqueta2.setHorizontalAlignment(JLabel.LEFT);
+		regis.add(etiqueta2);
+		
+		JTextField correo = new JTextField();
+		correo.setBounds(177, 220, 265, 30);
+		correo.setBackground(Color.WHITE);
+		correo.setOpaque(true);
+		correo.setText(user.email);
+		correo.setFont(etiquetas);
+		regis.add(correo);
+		correo.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (Character.isWhitespace(c)) {
+		            e.consume();
+		        }
+		    }
+		});
+		
+		JLabel ambito = new JLabel("Rol");
+		ambito.setBounds(197, 260, 100, 30);
+		ambito.setOpaque(false);
+		ambito.setFont(etiquetas);
+		ambito.setHorizontalAlignment(JLabel.LEFT);
+		regis.add(ambito);
+		
+		String[] ambitos = {".............................", "Gerente", "Finanzas", "Recursos Humanos", "Marketing", "Sistemas", "Otro"};
+		
+		JComboBox amb = new JComboBox(ambitos);
+		amb.setBounds(177, 300, 265, 30);
+		regis.add(amb);
+		
+		JLabel usuario = new JLabel("Teléfono");
+		usuario.setBounds(197, 340, 180, 30);
+		usuario.setOpaque(false);
+		usuario.setFont(etiquetas);
+		usuario.setHorizontalAlignment(JLabel.LEFT);
+		regis.add(usuario);
+		
+		JTextField tel = new JTextField();
+		tel.setBounds(177, 380, 265, 30);
+		tel.setBackground(Color.WHITE);
+		tel.setOpaque(true);
+		tel.setText(user.cel);
+		tel.setFont(etiquetas);
+		regis.add(tel);
+		tel.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c) && !Character.isDigit(c)) {
+		            e.consume();
+		    }
+		}});
+		
+		JButton acceso = new JButton("Actualizar datos");
+		acceso.setBounds(415, 510, 180, 30); 
+		acceso.setBackground(Color.decode("#2435b1"));
+		acceso.setOpaque(true);
+		acceso.setFont(etiquetas);
+		acceso.setHorizontalAlignment(JButton.CENTER);
+		acceso.setForeground(Color.white);
+		acceso.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				String a = nom.getText();
+				String f = correo.getText();
+				String c = amb.getSelectedItem().toString();
+				String t = tel.getText();
+				
+				UserController uc = new UserController();
+				User updatedUser = new User(user.id, a, f, c, t, user.create, user.update);
+				um = new UserModel();
+				if(um.update(updatedUser)) {
+					JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Alta Exitosa", JOptionPane.INFORMATION_MESSAGE);
+					frame.dispose();
+					uc.usuarios();
+				}
+				
+			};
+		});
+		regis.add(acceso);
+		
+		JButton irLogin = new JButton("Volver");
+		irLogin.setBounds(388, 550, 200,30);
+		irLogin.setFont(et);
+		irLogin.setVisible(true);
+		irLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				UserController uc = new UserController();
+				frame.dispose();
+				uc.usuarios();
+			}
+		
+		});
+		regis.add(irLogin);
+		
+		frame.repaint();
+
+		regis.repaint();
+		
+	}
+
 	
 }
