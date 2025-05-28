@@ -108,7 +108,7 @@ public class UserView {
 	    	tarjeta1.add(userLabel);
 	    	
 	    	JButton actualiza = new JButton("Editar");
-	    	actualiza.setBounds(650,y,80,30);
+	    	actualiza.setBounds(550,y,80,30);
 	    	actualiza.setFont(et);
 	    	actualiza.addActionListener(new ActionListener() {
 
@@ -121,6 +121,30 @@ public class UserView {
 	    		
 	    	});
 	    	tarjeta1.add(actualiza);
+	    	
+	    	JButton delete = new JButton("Eliminar");
+	    	delete.setBounds(680,y,100,30);
+	    	delete.setFont(et);
+	    	delete.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int opc;
+					
+					opc = JOptionPane.showConfirmDialog(ventana, "Desea eliinar el registro?", "Confirmar", JOptionPane.YES_NO_OPTION);
+					
+					if(opc == 0) {
+						ventana.dispose();
+						UserController uc = new UserController();
+						uc.delete(user.id);
+						um = new UserModel();
+						um.delete(user.id);
+						uc.usuarios();
+					}
+				}
+	    		
+	    	});
+	    	tarjeta1.add(delete);
 	    	
 	    	y+=40;
 	    }
@@ -550,5 +574,7 @@ public class UserView {
 		
 	}
 
-	
+	public void eliminar(int id) {
+		
+	}
 }

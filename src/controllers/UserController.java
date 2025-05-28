@@ -24,4 +24,9 @@ public class UserController {
 	{
 		view.actualizar(userToUpdate);
 	}
+	
+	public void delete(int user_id)
+	{
+		view.eliminar(user_id);
+	}
 }
